@@ -10,6 +10,9 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import modelo.Escola;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 /**
  *
  * @author Administrador
@@ -80,4 +83,31 @@ public class EscolaDao {
             return false;
         }
     }
+        public static List<Escola> consultar() {
+        List<Escola> resultados = new ArrayList<>();
+        //editar o SQL conforme a entidade
+        String sql = "SELECT nome,sigla,endereco,codigo,area, nr_de_alunos FROM escola";
+        PreparedStatement ps;
+        try {
+            ps = conexao.Conexao.getConexao().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Escola objeto = new Escola();
+                //definir um set para cada atributo da entidade, cuidado com o tipo
+                objeto.setNome(rs.getString("nome"));
+                objeto.setSigla(rs.getString("sigla"));
+                objeto.setEndereco(rs.getString("endereco"));
+                objeto.setCodigo(rs.getInt("codigo"));
+                objeto.setArea(rs.getDouble("area"));
+                objeto.setCodigo(rs.getInt("codigo"));
+                objeto.setNr_de_alunos(rs.getInt("numero_de_alunos"));
+                
+                resultados.add(objeto);//não mexa nesse, ele adiciona o objeto na lista
+            }
+            return resultados;
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex.getMessage());
+            return null;
+        }
+}
 }

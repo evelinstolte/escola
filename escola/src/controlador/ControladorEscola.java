@@ -9,6 +9,10 @@ import dao.EscolaDao;
 import javax.swing.JOptionPane;
 import modelo.Escola;
 import tela.manutencao.ManutencaoEscola;
+import java.util.List;
+import java.util.Vector;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -63,5 +67,30 @@ public class ControladorEscola {
             JOptionPane.showMessageDialog(null, "Erro!");
         }
     }
-   
+   public static void atualizarTabela(JTable tabela) {
+        DefaultTableModel modelo = new DefaultTableModel();
+        //definindo o cabeçalho da tabela
+        modelo.addColumn("Nome");
+        modelo.addColumn("Sigla");
+        modelo.addColumn("Endereço");
+        modelo.addColumn("Código");
+        modelo.addColumn("Área");
+        modelo.addColumn("Número de Alunos");
+        
+        List<Escola> resultados = EscolaDao.consultar();
+        for (Escola objeto : resultados) {
+            Vector linha = new Vector();
+            
+            //definindo o conteúdo da tabela
+            linha.add(objeto.getNome());
+            linha.add(objeto.getSigla());
+            linha.add(objeto.getEndereco());
+            linha.add(objeto.getCodigo());
+            linha.add(objeto.getArea());
+            linha.add(objeto.getNr_de_alunos());
+            
+            modelo.addRow(linha); //adicionando a linha na tabela
+        }
+        tabela.setModel(modelo);
+    }
 }
