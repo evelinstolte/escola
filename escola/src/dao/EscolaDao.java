@@ -52,15 +52,15 @@ public class EscolaDao {
         }
     }
        public static boolean alterar(Escola objeto) {
-        String sql = "UPDATE escola SET nome = ?, sigla = ?, endereco = ?, area = ?, nr_de_alunos =? WHERE codigo=?";
+        String sql = "UPDATE escola SET sigla = ?,  nome = ?, endereco = ?, area = ?, nr_de_alunos =? WHERE codigo=?";
         try {
             PreparedStatement ps = conexao.Conexao.getConexao().prepareStatement(sql);
-            ps.setString(1, objeto.getNome()); 
-            ps.setString(2, objeto.getSigla());
+            ps.setString(1, objeto.getSigla());
+            ps.setString(2, objeto.getNome()); 
             ps.setString(3, objeto.getEndereco());
-            ps.setInt(4, objeto.getCodigo());
-            ps.setDouble(5, objeto.getArea());
-            ps.setInt(6, objeto.getNr_de_alunos());
+            ps.setDouble(4, objeto.getArea());
+            ps.setInt(5, objeto.getNr_de_alunos());
+            ps.setInt(6, objeto.getCodigo());
             
             ps.executeUpdate();
             
@@ -72,7 +72,7 @@ public class EscolaDao {
     }
        
         public static boolean excluir(Escola objeto) {
-        String sql = "DELETE FROM produto WHERE codigo=?";
+        String sql = "DELETE FROM escola WHERE codigo=?";
         try {
             PreparedStatement ps = conexao.Conexao.getConexao().prepareStatement(sql);
             ps.setInt(1, objeto.getCodigo());
@@ -86,7 +86,7 @@ public class EscolaDao {
         public static List<Escola> consultar() {
         List<Escola> resultados = new ArrayList<>();
         //editar o SQL conforme a entidade
-        String sql = "SELECT nome,sigla,endereco,codigo,area, nr_de_alunos FROM escola";
+        String sql = "SELECT codigo, sigla ,nome ,endereco, area, nr_de_alunos FROM escola";
         PreparedStatement ps;
         try {
             ps = conexao.Conexao.getConexao().prepareStatement(sql);
@@ -94,12 +94,11 @@ public class EscolaDao {
             while (rs.next()) {
                 Escola objeto = new Escola();
                 //definir um set para cada atributo da entidade, cuidado com o tipo
-                objeto.setNome(rs.getString("nome"));
+                objeto.setCodigo(rs.getInt("codigo"));             
                 objeto.setSigla(rs.getString("sigla"));
-                objeto.setEndereco(rs.getString("endereco"));
-                objeto.setCodigo(rs.getInt("codigo"));
-                objeto.setArea(rs.getDouble("area"));
-                objeto.setCodigo(rs.getInt("codigo"));
+                objeto.setNome(rs.getString("nome"));
+                objeto.setEndereco(rs.getString("endereco"));                
+                objeto.setArea(rs.getDouble("area"));            
                 objeto.setNr_de_alunos(rs.getInt("numero_de_alunos"));
                 
                 resultados.add(objeto);//não mexa nesse, ele adiciona o objeto na lista

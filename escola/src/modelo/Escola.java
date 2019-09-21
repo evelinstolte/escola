@@ -12,27 +12,11 @@ package modelo;
 public class Escola {
     
     private Integer codigo;
+    private String sigla;
     private String nome;
     private String endereco;
-    private String sigla;
     private Double area;
     private Integer nr_de_alunos;
-
-    public Double getArea() {
-        return area;
-    }
-
-    public void setArea(Double area) {
-        this.area = area;
-    }
-
-    public Integer getNr_de_alunos() {
-        return nr_de_alunos;
-    }
-
-    public void setNr_de_alunos(Integer nr_de_alunos) {
-        this.nr_de_alunos = nr_de_alunos;
-    }
 
     public Integer getCodigo() {
         return codigo;
@@ -40,6 +24,14 @@ public class Escola {
 
     public void setCodigo(Integer codigo) {
         this.codigo = codigo;
+    }
+
+    public String getSigla() {
+        return sigla;
+    }
+
+    public void setSigla(String sigla) {
+        this.sigla = sigla;
     }
 
     public String getNome() {
@@ -58,17 +50,27 @@ public class Escola {
         this.endereco = endereco;
     }
 
-    public String getSigla() {
-        return sigla;
+    public Double getArea() {
+        return area;
     }
 
-    public void setSigla(String sigla) {
-        this.sigla = sigla;
+    public void setArea(Double area) {
+        this.area = area;
+    }
+
+    public Integer getNr_de_alunos() {
+        return nr_de_alunos;
+    }
+
+    public void setNr_de_alunos(Integer nr_de_alunos) {
+        this.nr_de_alunos = nr_de_alunos;
     }
 
     @Override
     public String toString() {
-        return nome;
+        return  nome;
     }
+
+ 
   
 }

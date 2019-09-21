@@ -42,8 +42,8 @@ public class ControladorEscola {
         Escola objeto = new Escola();
         //definir todos os atributos
         objeto.setCodigo(Integer.parseInt(man.jtfCodigo.getText()));
-        objeto.setNome(man.jtfNome.getText());
         objeto.setSigla(man.jtfSigla.getText());
+        objeto.setNome(man.jtfNome.getText());
         objeto.setEndereco(man.jtfEndereco.getText());
         objeto.setArea(Double.parseDouble(man.jtfArea.getText()));
         objeto.setNr_de_alunos(Integer.parseInt(man.jtfNr_de_alunos.getText()));
@@ -70,10 +70,10 @@ public class ControladorEscola {
    public static void atualizarTabela(JTable tabela) {
         DefaultTableModel modelo = new DefaultTableModel();
         //definindo o cabeçalho da tabela
-        modelo.addColumn("Nome");
-        modelo.addColumn("Sigla");
-        modelo.addColumn("Endereço");
         modelo.addColumn("Código");
+        modelo.addColumn("Sigla");
+        modelo.addColumn("Nome");
+        modelo.addColumn("Endereço");
         modelo.addColumn("Área");
         modelo.addColumn("Número de Alunos");
         
@@ -82,8 +82,9 @@ public class ControladorEscola {
             Vector linha = new Vector();
             
             //definindo o conteúdo da tabela
-            linha.add(objeto.getNome());
+            linha.add(objeto.getCodigo());
             linha.add(objeto.getSigla());
+            linha.add(objeto.getNome());
             linha.add(objeto.getEndereco());
             linha.add(objeto.getCodigo());
             linha.add(objeto.getArea());
