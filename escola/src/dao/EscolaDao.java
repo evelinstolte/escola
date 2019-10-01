@@ -20,7 +20,7 @@ import java.util.List;
 public class EscolaDao {
     
      public static boolean inserir(Escola objeto) {
-        String sql = "INSERT INTO escola (sigla, nome, endereco, nr_de_alunos, area) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO escola (sigla, nome, endereco,area, nr_de_alunos) VALUES (?, ?, ?, ?, ?)";
         try {
             PreparedStatement ps = conexao.Conexao.getConexao().prepareStatement(sql);
             ps.setString(1, objeto.getSigla());
@@ -99,7 +99,7 @@ public class EscolaDao {
                 objeto.setNome(rs.getString("nome"));
                 objeto.setEndereco(rs.getString("endereco"));                
                 objeto.setArea(rs.getDouble("area"));            
-                objeto.setNr_de_alunos(rs.getInt("numero_de_alunos"));
+                objeto.setNr_de_alunos(rs.getInt("nr_de_alunos"));
                 
                 resultados.add(objeto);//não mexa nesse, ele adiciona o objeto na lista
             }

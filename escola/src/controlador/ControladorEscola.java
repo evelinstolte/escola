@@ -75,7 +75,7 @@ public class ControladorEscola {
         modelo.addColumn("Nome");
         modelo.addColumn("Endereço");
         modelo.addColumn("Área");
-        modelo.addColumn("Número de Alunos");
+        modelo.addColumn("Numero de Alunos");
         
         List<Escola> resultados = EscolaDao.consultar();
         for (Escola objeto : resultados) {
